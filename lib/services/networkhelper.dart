@@ -10,11 +10,9 @@ class NetworkHelper {
     if (response.statusCode == 200) {
       print(response.statusCode);
       var data = response.body;
-      print(data);
       return data;
     } else {
-      print("Some error has occurred");
-      print(response.statusCode);
+      return response.statusCode;
     }
   }
 }

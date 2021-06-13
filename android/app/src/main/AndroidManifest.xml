@@ -2,7 +2,7 @@
     package="com.example.vaccine_checker">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="vaccine_checker"
+        android:label="VacApp"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

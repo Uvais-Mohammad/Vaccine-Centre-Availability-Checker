@@ -1,53 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:vaccine_checker/widgets/searchbutton.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Vaccine Centre Availability Checker"),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(50, 0, 50, 16),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/vac_pin');
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "Search by PIN Code",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bg.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.8), BlendMode.darken),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(50, 0, 50, 16),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/vac_district');
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "Search by District",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text("Vaccine Centre Availability Checker"),
+            actions: [
+              IconButton(
+                padding: EdgeInsets.only(right: 5),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/info');
+                },
+                icon: Icon(Icons.info_outline),
+                tooltip: 'Info',
+              )
+            ],
           ),
-        ],
-      ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+                width: double.infinity,
+              ),
+              CircleAvatar(
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                radius: 75,
+              ),
+              Text(
+                'VacApp',
+                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 116,
+              ),
+              SearchButton(
+                  context: context,
+                  route: '/vac_pin',
+                  label: 'Search by PIN Code'),
+              SearchButton(
+                  context: context,
+                  route: '/vac_district',
+                  label: '  Search by District  '),
+            ],
+            // ),
+          ),
+        ),
+      ],
     );
   }
 }

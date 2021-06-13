@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:vaccine_checker/services/networkhelper.dart';
 
 const vacUrl = 'https://cdn-api.co-vin.in/api/v2/admin/location/states';
